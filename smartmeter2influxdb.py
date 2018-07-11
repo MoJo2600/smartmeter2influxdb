@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-
+import pytz
 import math
 import datetime
 import time
@@ -32,11 +32,11 @@ def main(username, password, db, host='localhost', port='8086', smartmeter_url='
     #print(power_l2)
     import_total = float(jsonpath(json, "$.TotalImport")[0]);
 
-
+    tz = pytz.timezone('Europe/Berlin')
 
     point_power = [{
             "measurement": "smartmeter_power",
-            "time": str(datetime.datetime.now()),
+            "time": str(datetime.datetime.now(tz=tz)),
             "fields": {
                 "L1": power_l1,
                 "L2": power_l2,
