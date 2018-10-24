@@ -55,7 +55,8 @@ def main(username, password, db, host='localhost', port='8086', smartmeter_url='
                 "Total": float(import_total)
             }
         }]
- 
+
+
     client = InfluxDBClient(host, port, username, password, db)
     client.switch_database(db)
     client.write_points(point_power)
@@ -81,5 +82,5 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
-    main(host=args.host, port=args.port, username=args.username, password=args.username, db=args.db)
+    main(host=args.host, port=args.port, username=args.username, password=args.password, db=args.db)
 
